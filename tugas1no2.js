@@ -51,7 +51,7 @@ switch (pilihan) {
     hasil = "Pilihan operasi salah!";
 }
 
-// console.log("Operasi: " + operasi);
-// console.log("Angka 1: " + angka1);
-// console.log("Angka 2: " + angka2);
-// console.log("Hasil: " + hasil);
+console.log("Operasi: " + operasi);
+console.log("Angka 1: " + angka1);
+console.log("Angka 2: " + angka2);
+console.log("Hasil: " + hasil);
