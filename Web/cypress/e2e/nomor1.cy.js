@@ -1,0 +1,31 @@
+describe('OrangeHRM - Add Employee Flow', () => {
+  it('Login as Admin', () => {
+    cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
+    cy.get('input[name="username"]').type('Admin');
+    cy.get('input[name="password"]').type('admin123');
+    cy.get('button[type="submit"]').click();
+    cy.url().should('include', '/dashboard'); 
+    cy.get(':nth-child(2) > .oxd-main-menu-item').click();
+    cy.get('.oxd-button > .oxd-icon').click();
+    cy.get('[name="firstName"]').type('John');
+    cy.get('[name="middleName"]').type('Alex');
+    cy.get('[name="lastName"]').type('Slamet');
+    cy.get('.oxd-button--secondary').click();
+    cy.get('.oxd-toast').should('be.visible');
+    cy.get(':nth-child(1) > .oxd-main-menu-item').click();
+    cy.get('.oxd-button > .oxd-icon').click();
+    cy.get('.oxd-select-wrapper').eq(0).click();
+    cy.get('.oxd-select-dropdown').contains('Admin').click();
+    cy.get('.oxd-select-wrapper').eq(1).click();
+    cy.get('.oxd-select-dropdown').contains('Enabled').click();
+    cy.get('.oxd-autocomplete-text-input > input').type('John Alex Slamet');
+    cy.wait(1000); 
+    cy.get('.oxd-autocomplete-dropdown').contains('John Alex Slamet').click();
+    cy.get(':nth-child(4) > .oxd-input-group > :nth-child(2) > .oxd-input').type('johnadmin12345');
+    cy.get('input[type="password"]').eq(0).type('StrongP@ssw0rd');
+    cy.get('input[type="password"]').eq(1).type('StrongP@ssw0rd');
+    cy.get('button[type="submit"]').click();
+    cy.get('.oxd-toast').should('be.visible');
+    cy.get('.orangehrm-container').contains('John Slamet').should('be.visible');
+  });
+});
